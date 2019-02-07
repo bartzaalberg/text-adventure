@@ -40,9 +40,13 @@ public class MainWindow : Gtk.Window {
     }
 
     void load_locations () {
-        locations += new Location ("field","in an open field. You see a cave in the distance");
-        locations += new Location ("cave","in the cave. Watch out for the hole..");
-        locations += new Location ("hole","at dark hole.OH NO! You fell in.. its way to dark to see anything here");
+        locations += new Location ("field","in an open field. You see a cave in the distance", {"cave"});
+        locations += new Location ("cave","in the cave. Watch out for the hole..", {"cave", "hole"});
+        locations += new Location (
+            "hole",
+            "at dark hole.OH NO! You fell in.. its way to dark to see anything here",
+            {"hole"}
+        );
     }
 
     void show_opening_text () {
@@ -90,11 +94,24 @@ public class MainWindow : Gtk.Window {
                 stdout.printf ("You are already here\n");
                 return;
             }
+            if (player_can_move_to_location (input) == false) {
+                stdout.printf ("You cant go there from here\n");
+                return;
+            }
             location_of_player = location;
             execute_look ("around");
             return;
         }
         stdout.printf ("I don't understand where you want to go.\n");
+    }
+
+    bool player_can_move_to_location (string input) {
+        foreach (string connected_location in location_of_player.get_connected_locations ()) {
+            if ( input.contains (connected_location)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
 }
