@@ -17,6 +17,7 @@ executable(
     'src/MainWindow.vala',
     'src/Location.vala',
     'src/Constants.vala',
+    'src/TextHelper.vala',
     asresources,
     dependencies: [
         dependency('gtk+-3.0'),

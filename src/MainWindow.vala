@@ -1,13 +1,14 @@
 namespace Application {
 public class MainWindow : Gtk.Window {
 
+    private TextHelper text_helper = new TextHelper ();
     private Location location_of_player;
     Location[] locations = {};
 
     construct {
         load_locations ();
         location_of_player = locations [0];
-        show_opening_text ();
+        text_helper.show_opening_text ();
         execute_look ("around");
 
         while (true) {
@@ -31,10 +32,8 @@ public class MainWindow : Gtk.Window {
                 stdout.printf ("\nBye!\n");
                 break;
             }
-            stdout.printf ("\nYou could try: \n");
-            stdout.printf ("I "+ Constants.BOLDWHITE + "go" + Constants.RESET + " to the field \n");
-            stdout.printf ("I "+ Constants.BOLDWHITE + "look around" + Constants.RESET + " me \n");
-            stdout.printf ("I want to "+ Constants.BOLDWHITE + "quit" + Constants.RESET + " \n");
+
+            text_helper.show_help_text ();
         }
         return;
     }
@@ -49,34 +48,6 @@ public class MainWindow : Gtk.Window {
         );
     }
 
-    void show_opening_text () {
-        stdout.printf ("            ^             \n");
-        stdout.printf ("           / \\            \n");
-        stdout.printf ("          / | \\           \n");
-        stdout.printf ("         /| | |\\          \n");
-        stdout.printf ("         || | ||          \n");
-        stdout.printf ("         || | ||          \n");
-        stdout.printf ("         || | ||          \n");
-        stdout.printf ("         || | ||          \n");
-        stdout.printf ("         || | ||          \n");
-        stdout.printf ("         || | ||          \n");
-        stdout.printf ("         || | ||          \n");
-        stdout.printf ("         || | ||          \n");
-        stdout.printf ("         || | ||          \n");
-        stdout.printf ("         || | ||          \n");
-        stdout.printf ("/        || | ||        \\ \n");
-        stdout.printf ("|-------- | | | --------| \n");
-        stdout.printf ("|-------- | | | --------| \n");
-        stdout.printf ("\\         | | |         / \n");
-        stdout.printf ("         /| | |\\          \n");
-        stdout.printf ("         \\| | |/          \n");
-        stdout.printf ("          \\ | /           \n");
-        stdout.printf ("                          \n");
-        stdout.printf ("Welcome to THE TEXT ADVENTURE.\n");
-        stdout.printf ("\n");
-        stdout.printf ("\n");
-    }
-
     void execute_look (string input) {
         if (input.contains ("around")) {
             stdout.printf ("You are %s.\n", location_of_player.get_description ());
@@ -87,14 +58,14 @@ public class MainWindow : Gtk.Window {
 
     void execute_go (string input) {
         foreach (Location location in locations) {
-            if ( !(input.contains (location.get_tag ()))) {
+            if ( !(location_in_input (location, input))) {
                 continue;
             }
-            if (location.get_tag () == location_of_player.get_tag ()) {
+            if (player_is_already_in_location (location)) {
                 stdout.printf ("You are already here\n");
                 return;
             }
-            if (player_can_move_to_location (input) == false) {
+            if ( !(player_can_move_to_location (input))) {
                 stdout.printf ("You cant go there from here\n");
                 return;
             }
@@ -105,6 +76,10 @@ public class MainWindow : Gtk.Window {
         stdout.printf ("I don't understand where you want to go.\n");
     }
 
+    bool location_in_input (Location location, string input) {
+        return input.contains (location.get_tag ());
+    }
+
     bool player_can_move_to_location (string input) {
         foreach (string connected_location in location_of_player.get_connected_locations ()) {
             if ( input.contains (connected_location)) {
@@ -112,6 +87,10 @@ public class MainWindow : Gtk.Window {
             }
         }
         return false;
+    }
+
+    bool player_is_already_in_location (Location location) {
+        return location.get_tag () == location_of_player.get_tag ();
     }
 }
 }
