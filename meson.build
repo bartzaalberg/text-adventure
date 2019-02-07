@@ -16,7 +16,9 @@ executable(
     'src/Application.vala',
     'src/MainWindow.vala',
     'src/Location.vala',
+    'src/Item.vala',
     'src/Constants.vala',
+    'src/Player.vala',
     'src/TextHelper.vala',
     asresources,
     dependencies: [
