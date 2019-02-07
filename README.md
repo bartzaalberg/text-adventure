@@ -1,5 +1,5 @@
-# Python Tester
-Test your Python code easily
+# Game
+A text adventure
 
 <p align="center">
     <a href="<p align="center">
@@ -28,12 +28,10 @@ First you will need to install elementary SDK
 These dependencies must be present before building
  - `valac`
  - `gtk+-3.0`
- - `granite`
- - `gtksourceview-3.0`
 
  You can install these on a Ubuntu-based system by executing this command:
 
- `sudo apt install valac libgtk-3-dev libgranite-dev gtksourceview-3.0`
+ `sudo apt install valac libgtk-3-dev`
 
 ### Building
 ```
