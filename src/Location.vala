@@ -33,5 +33,14 @@ public class Location : Object {
     public string[] get_items () {
         return this.items;
     }
+
+    public bool contains_item (string input) {
+        foreach (string item in this.items) {
+            if ( input.contains (item)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 }

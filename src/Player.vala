@@ -10,12 +10,32 @@ public class Player : Object {
     }
 
     public void pickup_item (string input) {
+        if (!current_location.contains_item (input)) {
+            stdout.printf ("The item isn't here\n");
+            return;
+        }
+
         foreach (Item item in items.get_list ()) {
             if ( input.contains (item.get_tag ())) {
                 inventory += item.get_tag ();
                 break;
             }
         }
+
+        stdout.printf ("The item is in your inventory\n");
+    }
+
+    public void look (string input) {
+        if (current_location.get_tag () == "hole") {
+            stdout.printf ("It's too dark to see.\n");
+            return;
+        }
+
+        if (input.contains ("around")) {
+            stdout.printf ("You are %s.\n", current_location.get_description ());
+            return;
+        }
+        stdout.printf ("I don't understand what you want to see.\n");
     }
 
     public void set_current_location (Location current_location) {
