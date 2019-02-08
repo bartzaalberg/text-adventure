@@ -31,7 +31,7 @@ public class TextHelper : Object {
 
     public void show_help_text () {
         stdout.printf ("\nYou could try: \n");
-        stdout.printf ("I " + bold ("go") + " to the field \n");
+        stdout.printf ("I " + bold ("go") + " to the " + bold ("field") + "\n");
         stdout.printf ("I " + bold ("look around") + " me \n");
         stdout.printf ("Show me my " + bold ("inventory") + " me \n");
         stdout.printf (bold ("Pickup") + " the straw hat \n");
