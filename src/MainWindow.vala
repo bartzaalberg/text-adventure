@@ -4,10 +4,11 @@ public class MainWindow : Gtk.Window {
     private TextHelper text_helper = new TextHelper ();
     private Locations locations = Locations.get_instance ();
     private Player player = new Player ();
-    private Location location_of_player;
+
 
     construct {
-        location_of_player = locations.get_list () [0];
+
+        player.set_current_location (locations.get_list () [0]);
         text_helper.show_opening_text ();
         execute_look ("around");
 
@@ -17,7 +18,7 @@ public class MainWindow : Gtk.Window {
             stdout.printf ("\n");
 
             if ( input.contains ("look")) {
-                if (location_of_player.get_tag () == "hole") {
+                if (player.get_current_location ().get_tag () == "hole") {
                     stdout.printf ("It's too dark to see.\n");
                     continue;
                 }
@@ -33,7 +34,7 @@ public class MainWindow : Gtk.Window {
                 continue;
             }
             if ( input.contains ("pickup") || input.contains ("take")) {
-                if (!location_contains_item (input)) {
+                if (!current_location_contains_item (input)) {
                     stdout.printf ("The item isn't here\n");
                     continue;
                 }
@@ -53,7 +54,7 @@ public class MainWindow : Gtk.Window {
 
     void execute_look (string input) {
         if (input.contains ("around")) {
-            stdout.printf ("You are %s.\n", location_of_player.get_description ());
+            stdout.printf ("You are %s.\n", player.get_current_location ().get_description ());
             return;
         }
         stdout.printf ("I don't understand what you want to see.\n");
@@ -64,15 +65,15 @@ public class MainWindow : Gtk.Window {
             if ( !(location_in_input (location, input))) {
                 continue;
             }
-            if (player_is_already_in_location (location)) {
+            if (player.is_in_location (location)) {
                 stdout.printf ("You are already here\n");
                 return;
             }
-            if ( !(player_can_move_to_location (input))) {
+            if ( !(player.can_move_to_location (input))) {
                 stdout.printf ("You cant go there from here\n");
                 return;
             }
-            location_of_player = location;
+            player.set_current_location (location);
             execute_look ("around");
             return;
         }
@@ -83,26 +84,13 @@ public class MainWindow : Gtk.Window {
         return input.contains (location.get_tag ());
     }
 
-    bool player_can_move_to_location (string input) {
-        foreach (string connected_location in location_of_player.get_connected_locations ()) {
-            if ( input.contains (connected_location)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    bool location_contains_item (string input) {
-        foreach (string item in location_of_player.get_items ()) {
+    bool current_location_contains_item (string input) {
+        foreach (string item in player.get_current_location ().get_items ()) {
             if ( input.contains (item)) {
                 return true;
             }
         }
         return false;
-    }
-
-    bool player_is_already_in_location (Location location) {
-        return location.get_tag () == location_of_player.get_tag ();
     }
 }
 }
