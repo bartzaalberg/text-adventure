@@ -35,5 +35,14 @@ public class Locations : Object {
     public Location [] get_list () {
         return locations;
     }
+
+    public Location? get_location_by_input (string input) {
+        foreach (Location location in locations) {
+            if ( input.contains (location.get_tag ())) {
+                return location;
+            }
+        }
+        return null;
+    }
 }
 }
