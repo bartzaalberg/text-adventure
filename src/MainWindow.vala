@@ -13,7 +13,7 @@ public class MainWindow : Gtk.Window {
 
         while (true) {
             stdout.printf ("--> ");
-            string? input = stdin.read_line ();
+            string? input = stdin.read_line ().down ();
             stdout.printf ("\n");
 
             if ( input.contains ("look")) {
