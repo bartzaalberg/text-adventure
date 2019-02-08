@@ -2,15 +2,12 @@ namespace Application {
 public class MainWindow : Gtk.Window {
 
     private TextHelper text_helper = new TextHelper ();
+    private Locations locations = Locations.get_instance ();
     private Player player = new Player ();
     private Location location_of_player;
-    Location[] locations = {};
-    Item[] items = {};
 
     construct {
-        load_items ();
-        load_locations ();
-        location_of_player = locations [0];
+        location_of_player = locations.get_list () [0];
         text_helper.show_opening_text ();
         execute_look ("around");
 
@@ -27,7 +24,7 @@ public class MainWindow : Gtk.Window {
                 execute_look (input);
                 continue;
             }
-            if ( input.contains ("go")) {
+            if ( input.contains ("go") || input.contains ("walk") || input.contains ("run")) {
                 execute_go (input);
                 continue;
             }
@@ -35,12 +32,12 @@ public class MainWindow : Gtk.Window {
                 text_helper.show_inventory (player);
                 continue;
             }
-            if ( input.contains ("pickup")) {
+            if ( input.contains ("pickup") || input.contains ("take")) {
                 if (!location_contains_item (input)) {
                     stdout.printf ("The item isn't here\n");
                     continue;
                 }
-                player.pickup_item (input, items);
+                player.pickup_item (input);
                 stdout.printf ("The item is in your inventorys\n");
                 continue;
             }
@@ -54,34 +51,6 @@ public class MainWindow : Gtk.Window {
         return;
     }
 
-    void load_items () {
-        items += new Item ("copper coin");
-        items += new Item ("silver coin");
-        items += new Item ("torch");
-        items += new Item ("straw hat");
-    }
-
-    void load_locations () {
-        locations += new Location (
-            "field",
-            "in an open field. There are some coins and a straw hat next too you. You see a cave in the distance",
-            {"cave"},
-            {"silver coin", "copper coin", "straw hat"}
-        );
-        locations += new Location (
-            "cave",
-            "in the cave. The is a flaming torch on the wall. Watch out for the hole..",
-            {"cave", "hole"},
-            {"torch"}
-        );
-        locations += new Location (
-            "hole",
-            "at dark hole.OH NO! You fell in.. its way to dark to see anything here",
-            {"hole"},
-            {}
-        );
-    }
-
     void execute_look (string input) {
         if (input.contains ("around")) {
             stdout.printf ("You are %s.\n", location_of_player.get_description ());
@@ -91,7 +60,7 @@ public class MainWindow : Gtk.Window {
     }
 
     void execute_go (string input) {
-        foreach (Location location in locations) {
+        foreach (Location location in locations.get_list ()) {
             if ( !(location_in_input (location, input))) {
                 continue;
             }

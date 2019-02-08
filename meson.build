@@ -20,6 +20,8 @@ executable(
     'src/Constants.vala',
     'src/Player.vala',
     'src/TextHelper.vala',
+    'src/Locations.vala',
+    'src/Items.vala',
     asresources,
     dependencies: [
         dependency('gtk+-3.0'),
