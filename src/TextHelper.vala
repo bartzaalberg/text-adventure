@@ -27,6 +27,10 @@ public class TextHelper : Object {
         stdout.printf ("Welcome to THE TEXT ADVENTURE.\n");
         stdout.printf ("\n");
         stdout.printf ("\n");
+        stdout.printf ("A worried-looking man I would come to know as James answered the heavy door. He looks at me, and sees my desperation.\n");
+        stdout.printf ("What happened? He asks confused. We don't have time for this. Every second counts as she is moved further away from \n");
+        stdout.printf ("Rosetown. Let me in James, I say frustrated. You know there is no time for a chat. He nods and asks me to follow him. \n");
+        stdout.printf ("We hurry through the backdoor and silently run through the streets.\n ");
     }
 
     public void show_help_text () {
