@@ -12,6 +12,18 @@ public class Locations : Object {
             {}
         );
         locations += new Location (
+            "two-way fork",
+            "now on a fork in the road. One path leads to a " + Constants.location ("field") + ". The other into a " + Constants.location ("forest"),
+            {"road", "field", "forest"},
+            {}
+        );
+        locations += new Location (
+            "forest",
+            "at the forest. As you try to enter the plants suddenly start to move and block your path. You should probably head back to the " + Constants.location ("two-way fork"),
+            {"two-way fork"},
+            {}
+        );
+        locations += new Location (
             "field",
             "in an open field. There are some coins and a straw hat next too you. You see a cave in the distance",
             {"cave"},
@@ -19,8 +31,8 @@ public class Locations : Object {
         );
         locations += new Location (
             "cave",
-            "inside the cave. It's a lot darker here than outside. We should probably get a light. " + Constants.COMPANION + " says. There is a flaming torch on the wall. You shouldWatch out for the hole..",
-            {"cave", "hole"},
+            "inside the cave. It's a lot darker here than outside. We should probably get a light. " + Constants.COMPANION + " says. There is a flaming torch on the wall. You should watch out for the " + Constants.location ("hole"),
+            {"field", "hole"},
             {"torch"}
         );
         locations += new Location (
