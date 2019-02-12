@@ -6,6 +6,12 @@ public class Locations : Object {
 
     Locations () {
         locations += new Location (
+            "road",
+            "now on a long road. It's mostly used by traders heading to and from " + Constants.HOMETOWN + ". No one is around. In the distance you see a " + Constants.location ("two-way fork") + " in the road",
+            {"two-way fork"},
+            {}
+        );
+        locations += new Location (
             "field",
             "in an open field. There are some coins and a straw hat next too you. You see a cave in the distance",
             {"cave"},
@@ -13,7 +19,7 @@ public class Locations : Object {
         );
         locations += new Location (
             "cave",
-            "in the cave. The is a flaming torch on the wall. Watch out for the hole..",
+            "inside the cave. It's a lot darker here than outside. We should probably get a light. " + Constants.COMPANION + " says. There is a flaming torch on the wall. You shouldWatch out for the hole..",
             {"cave", "hole"},
             {"torch"}
         );

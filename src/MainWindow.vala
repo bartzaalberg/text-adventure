@@ -27,7 +27,10 @@ public class MainWindow : Gtk.Window {
                 text_helper.show_inventory (player);
                 continue;
             }
-            if ( input.contains ("pickup") || input.contains ("take")) {
+            if ( input.contains ("pickup")
+                || input.contains ("take")
+                || (input.contains ("pick") && input.contains ("up"))
+                ) {
                 player.pickup (input);
                 continue;
             }
