@@ -5,10 +5,8 @@ public class Items : Object {
     Item[] items = {};
 
     Items () {
-        items += new Item ("copper coin");
-        items += new Item ("silver coin");
-        items += new Item ("torch");
-        items += new Item ("straw hat");
+        items += new Item ("torch", "etc");
+        items += new Item ("straw hat", "helmet");
     }
 
     public static Items get_instance () {

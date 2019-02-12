@@ -6,6 +6,8 @@ public class Player : Object {
 
     static Player? instance;
 
+    Item? helmet = null;
+
     Player () {
     }
 
@@ -16,11 +18,11 @@ public class Player : Object {
         return instance;
     }
 
-    string[] inventory = {};
+    Item[] inventory = {};
     private Location current_location;
     private string horse_name;
 
-    public string[] show_inventory () {
+    public Item[] show_inventory () {
         return this.inventory;
     }
 
@@ -32,6 +34,14 @@ public class Player : Object {
         this.horse_name = horse_name;
     }
 
+    public Item get_helmet () {
+        return this.helmet;
+    }
+
+    public void set_helmet (Item item) {
+        this.helmet = item;
+    }
+
     public void pickup (string input) {
         if (!current_location.contains_item (input)) {
             stdout.printf ("The item isn't here\n");
@@ -39,13 +49,34 @@ public class Player : Object {
         }
 
         foreach (Item item in items.get_list ()) {
-            if ( input.contains (item.get_tag ())) {
-                inventory += item.get_tag ();
-                break;
+            if ( !input.contains (item.get_tag ())) {
+                continue;
             }
+            inventory += item;
+            stdout.printf ("The " + Constants.item (item.get_tag ()) +" was added to your inventory\n");
+            return;
+        }
+    }
+
+    public void equip (string input) {
+        foreach (Item item in this.show_inventory ()) {
+            if ( !input.contains (item.get_tag ())) {
+                continue;
+            }
+            if ( !item.is_equipable ()) {
+                stdout.printf("The " + Constants.item(item.get_tag()) + " is not equipable\n");
+                return;
+            }
+
+            if(item.get_item_type() == "helmet") {
+                this.set_helmet(item);
+            }
+
+            stdout.printf(Constants.item(item.get_tag ()) + " equipped\n");
+            return;
         }
 
-        stdout.printf ("The item is in your inventory\n");
+        stdout.printf ("You don't have this item\n");
     }
 
     public void look (string input) {

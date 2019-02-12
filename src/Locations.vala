@@ -7,7 +7,7 @@ public class Locations : Object {
     Locations () {
         locations += new Location (
             "road",
-            "now on a long road. It's mostly used by traders heading to and from " + Constants.HOMETOWN + ". No one is around. In the distance you see a " + Constants.location ("two-way fork") + " in the road",
+            "now on a long road. It's mostly used by traders heading to and from " + Constants.HOMETOWN + ". No one is around. In the distance \nyou see a " + Constants.location ("two-way fork") + " in the road",
             {"two-way fork"},
             {}
         );
@@ -25,13 +25,13 @@ public class Locations : Object {
         );
         locations += new Location (
             "field",
-            "in an open field. There are some coins and a straw hat next too you. You see a cave in the distance",
+            "in the field. There is scarecrow in the center with some crows on it picking on a " + Constants.item ("straw hat") + ". On the other side of the field you see a road that leads to a " + Constants.location ("cave"),
             {"cave"},
-            {"silver coin", "copper coin", "straw hat"}
+            {"straw hat"}
         );
         locations += new Location (
             "cave",
-            "inside the cave. It's a lot darker here than outside. We should probably get a light. " + Constants.COMPANION + " says. There is a flaming torch on the wall. You should watch out for the " + Constants.location ("hole"),
+            "inside the cave. It's a lot darker here than outside. We should probably get a light. " + Constants.COMPANION + " says. There is a flaming " + Constants.item ("hole") + " on the wall. You should watch out for the " + Constants.location ("hole"),
             {"field", "hole"},
             {"torch"}
         );

@@ -27,6 +27,10 @@ public class MainWindow : Gtk.Window {
                 text_helper.show_inventory (player);
                 continue;
             }
+            if ( input.contains ("equipment")) {
+                text_helper.show_equipment (player);
+                continue;
+            }
             if ( input.contains ("pickup")
                 || input.contains ("take")
                 || (input.contains ("pick") && input.contains ("up"))
@@ -34,6 +38,12 @@ public class MainWindow : Gtk.Window {
                 player.pickup (input);
                 continue;
             }
+
+            if ( input.contains ("equip") || input.contains ("wear")) {
+                player.equip (input);
+                continue;
+            }
+
             if ( input.contains ("quit")) {
                 stdout.printf ("\nBye!\n");
                 break;

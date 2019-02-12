@@ -39,8 +39,8 @@ public class TextHelper : Object {
         stdout.printf ("I climb on " + player.get_horse_name () + " and grab the reins. Let's head out. \n");
         stdout.printf ("\n");
         stdout.printf ("We ride for the townsgate. Near the gate I see two man lying in a pool of blood. The town guards. The first facedown\n");
-        stdout.printf ("with 2 arrows in the back. The second probably noticed the attackers. His sword next to him and a deep cut from his waist \n");
-        stdout.printf ("to his neck. They didn't stand a chance.\n");
+        stdout.printf ("with 2 arrows in the back. The second probably noticed the attackers. His sword next to him and a deep cut from his \n");
+        stdout.printf ("waist to his neck. They didn't stand a chance.\n");
         stdout.printf ("\n");
         stdout.printf ("There is nothing we can do for them, James says. Trotting through the gate. I follow him. \n");
     }
@@ -49,8 +49,9 @@ public class TextHelper : Object {
         stdout.printf ("\nYou could try: \n");
         stdout.printf ("I " + Constants.location ("go") + " to the " + Constants.location ("field") + "\n");
         stdout.printf ("I " + Constants.examination ("look around") + " me \n");
-        stdout.printf ("Show me my " + Constants.item ("inventory") + "\n");
-        stdout.printf (Constants.action ("Pickup") + " the straw hat \n");
+        stdout.printf (Constants.item ("Show") + " me my " + Constants.item ("inventory") + "\n");
+        stdout.printf (Constants.item ("Equip") + " the " + Constants.item("sword") + "\n");
+        stdout.printf (Constants.item ("Pickup") + " the " + Constants.item("sword") + "\n");
         stdout.printf ("I want to " + Constants.game_command ("quit") + " \n");
     }
 
@@ -86,8 +87,15 @@ public class TextHelper : Object {
             stdout.printf ("You dont have any items \n");
             return;
         }
-        foreach (string item in player.show_inventory ()) {
-            stdout.printf (Constants.item (item + "\n"));
+        foreach (Item item in player.show_inventory ()) {
+            stdout.printf (Constants.item (item.get_tag() + "\n"));
+        }
+    }
+
+    public void show_equipment (Player player) {
+        stdout.printf ("Equipment: \n");
+        if(player.get_helmet() != null) {
+            stdout.printf ("Helmet: " + Constants.item (player.get_helmet().get_tag()) + "\n");
         }
     }
 }
