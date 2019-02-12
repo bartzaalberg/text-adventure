@@ -1,5 +1,6 @@
 namespace Application {
 public class TextHelper : Object {
+    private Player player = Player.get_instance ();
 
     public void show_opening_text () {
         stdout.printf ("            ^             \n");
@@ -45,29 +46,28 @@ public class TextHelper : Object {
         stdout.printf ("I want to " + bold ("quit") + " \n");
     }
 
-    public string pick_a_horse () {
+    public void pick_a_horse () {
         stdout.printf ("I'll have --> ");
-        string? input = stdin.read_line ().down ();
+        string? horse_name = stdin.read_line ().down ();
         stdout.printf ("\n");
 
-        if(input != "bliss" && input != "rusty"){
+        if(horse_name != "bliss" && horse_name != "rusty"){
             stdout.printf ("Come on we don't have time for your rambling. Just say the name of your horse! \n");
             pick_a_horse ();
         }
 
+        player.set_horse_name (horse_name);
         stdout.printf ("A fine choice, he says while hopping on ");
-        stdout.printf (input == "bliss" ? "Rusty" : "Bliss");
+        stdout.printf (player.get_horse_name () == "bliss" ? "Rusty" : "Bliss");
         stdout.printf (".\n");
 
-        if(input == "bliss"){
+        if (player.get_horse_name () == "bliss") {
             stdout.printf ("Bliss is a strong horse, very fast. But a bit of a chicken though, scared very quickly. \n");
         }
 
-        if(input == "rusty"){
+        if (player.get_horse_name () == "rusty") {
             stdout.printf ("Rusty is getting a bit old, but he's brave as lion. \n");
         }
-
-        return input;
     }
 
     public void show_inventory (Player player) {

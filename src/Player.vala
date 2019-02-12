@@ -4,11 +4,32 @@ public class Player : Object {
     private Items items = Items.get_instance ();
     private Locations locations = Locations.get_instance ();
 
+    static Player? instance;
+
+    Player () {
+    }
+
+    public static Player get_instance () {
+        if (instance == null) {
+            instance = new Player ();
+        }
+        return instance;
+    }
+
     string[] inventory = {};
     private Location current_location;
+    private string horse_name;
 
     public string[] show_inventory () {
         return this.inventory;
+    }
+
+    public string get_horse_name () {
+        return this.horse_name;
+    }
+
+    public void set_horse_name (string horse_name) {
+        this.horse_name = horse_name;
     }
 
     public void pickup (string input) {

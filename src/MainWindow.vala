@@ -3,7 +3,7 @@ public class MainWindow : Gtk.Window {
 
     private TextHelper text_helper = new TextHelper ();
     private Locations locations = Locations.get_instance ();
-    private Player player = new Player ();
+    private Player player = Player.get_instance ();
 
     construct {
         player.set_current_location (locations.get_list () [0]);
