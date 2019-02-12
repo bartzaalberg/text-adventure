@@ -33,7 +33,7 @@ public class TextHelper : Object {
         stdout.printf ("We hurry through the backdoor and silently run to the stable.\n ");
         stdout.printf ("\n");
         stdout.printf ("James already prepared the horses yesterday. You open the door and see two packed horses. Which one do you want? Bliss the swift? Or Rusty the bold.\n");
-        string horse = pick_a_horse();
+        pick_a_horse();
     }
 
     public void show_help_text () {
@@ -60,11 +60,11 @@ public class TextHelper : Object {
         stdout.printf (".\n");
 
         if(input == "bliss"){
-            stdout.printf ("Bliss is strong horse, very fast. But a bit of a chicken though. Scared very quick. \n");
+            stdout.printf ("Bliss is a strong horse, very fast. But a bit of a chicken though, scared very quickly. \n");
         }
 
         if(input == "rusty"){
-            stdout.printf ("Rusty is strong horse, very fast. But a bit of a chicken though. Scared very quick. \n");
+            stdout.printf ("Rusty is getting a bit old, but he's brave as lion. \n");
         }
 
         return input;
