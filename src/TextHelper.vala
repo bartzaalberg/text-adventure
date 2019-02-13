@@ -49,7 +49,8 @@ public class TextHelper : Object {
         stdout.printf ("\nYou could try: \n");
         stdout.printf ("I " + Constants.location ("go") + " to the " + Constants.location ("field") + "\n");
         stdout.printf ("I " + Constants.examination ("look around") + " me \n");
-        stdout.printf (Constants.item ("Show") + " me my " + Constants.item ("inventory") + "\n");
+        stdout.printf ("Look at my " + Constants.item ("inventory") + "\n");
+        stdout.printf ("View my " + Constants.item ("equipment") + "\n");
         stdout.printf (Constants.item ("Equip") + " the " + Constants.item("sword") + "\n");
         stdout.printf (Constants.item ("Pickup") + " the " + Constants.item("sword") + "\n");
         stdout.printf ("I want to " + Constants.game_command ("quit") + " \n");
@@ -94,9 +95,10 @@ public class TextHelper : Object {
 
     public void show_equipment (Player player) {
         stdout.printf ("Equipment: \n");
-        if(player.get_helmet() != null) {
-            stdout.printf ("Helmet: " + Constants.item (player.get_helmet().get_tag()) + "\n");
-        }
+        stdout.printf ("Helmet: " + (player.get_helmet() == null ? "No helmet" : Constants.item (player.get_helmet().get_tag())) + "\n");
+        stdout.printf ("Chest: " + (player.get_chest() == null ? "No chest" : Constants.item (player.get_chest().get_tag())) + "\n");
+        stdout.printf ("Pants: " + (player.get_pants() == null ? "No pants" : Constants.item (player.get_pants().get_tag())) + "\n");
+        stdout.printf ("Weapon: " + (player.get_weapon() == null ? "No weapon" : Constants.item (player.get_weapon().get_tag())) + "\n");
     }
 }
 }

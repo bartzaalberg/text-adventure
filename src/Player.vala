@@ -7,6 +7,10 @@ public class Player : Object {
     static Player? instance;
 
     Item? helmet = null;
+    Item? chest = null;
+    Item? pants = null;
+    Item? weapon = null;
+
 
     Player () {
     }
@@ -42,6 +46,30 @@ public class Player : Object {
         this.helmet = item;
     }
 
+    public Item get_chest () {
+        return this.chest;
+    }
+
+    public void set_chest (Item item) {
+        this.chest = item;
+    }
+
+    public Item get_pants () {
+        return this.pants;
+    }
+
+    public void set_pants (Item item) {
+        this.pants = item;
+    }
+
+    public Item get_weapon () {
+        return this.weapon;
+    }
+
+    public void set_weapon (Item item) {
+        this.weapon = item;
+    }
+
     public void pickup (string input) {
         if (!current_location.contains_item (input)) {
             stdout.printf ("The item isn't here\n");
@@ -70,6 +98,18 @@ public class Player : Object {
 
             if(item.get_item_type() == "helmet") {
                 this.set_helmet(item);
+            }
+
+            if(item.get_item_type() == "chest") {
+                this.set_chest(item);
+            }
+
+            if(item.get_item_type() == "pants") {
+                this.set_pants(item);
+            }
+
+            if(item.get_item_type() == "weapon") {
+                this.set_weapon(item);
             }
 
             stdout.printf(Constants.item(item.get_tag ()) + " equipped\n");
