@@ -28,11 +28,14 @@ public class CommandsView : Gtk.Grid {
 
         var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 6);
         box.add (command_lister);
-
         box.hexpand = true;
         box.vexpand = true;
+
+        var window = new Gtk.ScrolledWindow(null,null);
+        window.add(box);
+
         var input_component = new CommandInput();
-        attach (box, 0, 0, 1, 1);
+        attach (window, 0, 0, 1, 1);
         attach (input_component, 0, 1, 1, 1);
 
         text_helper.show_opening_text ();
