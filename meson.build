@@ -21,7 +21,12 @@ executable(
     'src/Player.vala',
     'src/TextHelper.vala',
     'src/Locations.vala',
+    'src/StackManager.vala',
     'src/Items.vala',
+    'src/Views/WelcomeView.vala',
+    'src/Views/CommandsView.vala',
+    'src/CommandLister.vala',
+    'src/CommandLogRow.vala',
     asresources,
     dependencies: [
         dependency('gtk+-3.0'),

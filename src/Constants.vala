@@ -1,5 +1,7 @@
 namespace Application.Constants {
     public const string APPLICATION_NAME = "com.github.bartzaalberg.python-tester";
+    public const int APPLICATION_WIDTH = 700;
+    public const int APPLICATION_HEIGHT = 500;
     public const string BOLDWHITE = "\033[32;1m";
     public const string BOLDRED = "\033[1m\033[31m";
     public const string BOLDGREEN = "\033[1m\033[32m";
