@@ -8,6 +8,7 @@ public class InputReactor : Object {
     static InputReactor? instance;
 
     public string input_string;
+    public string input_type;
 
     InputReactor () {
     }
@@ -25,6 +26,11 @@ public class InputReactor : Object {
     }
 
     public void reaction (string input) {
+        if ( input_type == "pick_a_horse") {
+            text_helper.pick_a_horse(input);
+            return;
+        }
+
         if ( input.contains ("look")) {
             player.look (input);
             return;

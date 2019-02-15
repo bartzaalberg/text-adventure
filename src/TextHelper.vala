@@ -32,16 +32,10 @@ public class TextHelper : Object {
         log += "\n";
         log += "\n";
         log += "A worried-looking man I would come to know as " + Constants.COMPANION + " answered the heavy door. He looks at me, and sees my desperation. What happened? He asks confused. We don't have time for this. Every second counts as she is moved further away from " + Constants.HOMETOWN + ". Let me in " + Constants.COMPANION + ", I say frustrated. You know there is no time for a chat. He nods and asks me to follow him. \n We hurry through the backdoor and silently run to the stable.\n\n" + Constants.COMPANION + " already prepared the horses yesterday. You open the door and see two packed horses. Which one do you want? " + Constants.decision ("Bliss") + " the swift? Or " + Constants.decision ("Rusty") + " the bold.";
-        command_lister.add_new_log( log);
-        // pick_a_horse();
-        // stdout.printf ("I climb on " + player.get_horse_name () + " and grab the reins. Let's head out. \n");
-        // stdout.printf ("\n");
-        // stdout.printf ("We ride for the townsgate. Near the gate I see two man lying in a pool of blood. The town guards. The first facedown\n");
-        // stdout.printf ("with 2 arrows in the back. The second probably noticed the attackers. His sword next to him and a deep cut from his \n");
-        // stdout.printf ("waist to his neck. They didn't stand a chance.\n");
-        // stdout.printf ("\n");
-        // stdout.printf ("There is nothing we can do for them, James says. Trotting through the gate. I follow him. \n");
 
+        var input_reactor = InputReactor.get_instance ();
+        command_lister.add_new_log( log);
+        input_reactor.input_type = "pick_a_horse";
     }
 
     public void show_help_text () {
@@ -56,30 +50,32 @@ public class TextHelper : Object {
         I want to " + Constants.game_command ("quit") + " \n");
     }
 
-    public void pick_a_horse () {
-        stdout.printf ("I'll have --> ");
-        string? horse_name = stdin.read_line ().down ();
+    public void pick_a_horse (string horse_name) {
         stdout.printf ("\n");
 
         if(horse_name != "bliss" && horse_name != "rusty"){
-            stdout.printf ("Come on we don't have time for your rambling. Just say the name of your horse! \n");
-            pick_a_horse ();
+            command_lister.add_new_log ("Come on we don't have time for your rambling. Just say the name of your horse! \n");
             return;
         }
 
+        var input_reactor = InputReactor.get_instance ();
+        input_reactor.input_type = null;
+
         player.set_horse_name (horse_name == "bliss" ? "Bliss" : "Rusty");
-        stdout.printf ("A fine choice, he says while hopping on ");
-        stdout.printf (player.get_horse_name () == "Bliss" ? "Rusty" : "Bliss");
-        stdout.printf (". ");
+        var horse = player.get_horse_name () == "Bliss" ? "Rusty" : "Bliss";
 
-        if (player.get_horse_name () == "bliss") {
-            stdout.printf ("Bliss is a strong horse, very fast. But a bit of a chicken though, \n");
-            stdout.printf ("scared very quickly. ");
+        command_lister.add_new_log ("A fine choice, he says while hopping on " + horse + ". ");
+
+        if (player.get_horse_name () == "Bliss") {
+            command_lister.add_new_log ("Bliss is a strong horse, very fast. But a bit of a chicken though, scared very quickly.");
         }
 
-        if (player.get_horse_name () == "rusty") {
-            stdout.printf ("Rusty is getting a bit old, but he's brave as lion. \n");
+        if (player.get_horse_name () == "Rusty") {
+            command_lister.add_new_log ("Rusty is getting a bit old, but he's brave as lion.");
         }
+
+        command_lister.add_new_log ("I climb on " + player.get_horse_name () + " and grab the reins. Let's head out.\n\nWe ride for the townsgate. Near the gate I see two man lying in a pool of blood. The town guards. The first facedown with 2 arrows in the back. The second probably noticed the attackers. His sword next to him and a deep cut from his waist to his neck. They didn't stand a chance.\n\nThere is nothing we can do for them, James says. Trotting through the gate. I follow him.");
+        player.look ("around");
     }
 
     public void show_inventory (Player player) {
