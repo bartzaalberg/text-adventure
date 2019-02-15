@@ -3,6 +3,7 @@ public class Player : Object {
 
     private Items items = Items.get_instance ();
     private Locations locations = Locations.get_instance ();
+    private CommandLister command_lister = CommandLister.get_instance ();
 
     static Player? instance;
 
@@ -72,7 +73,7 @@ public class Player : Object {
 
     public void pickup (string input) {
         if (!current_location.contains_item (input)) {
-            stdout.printf ("The item isn't here\n");
+            command_lister.add_new_log ("The item isn't here.");
             return;
         }
 
@@ -81,7 +82,7 @@ public class Player : Object {
                 continue;
             }
             inventory += item;
-            stdout.printf ("The " + Constants.item (item.get_tag ()) +" was added to your inventory\n");
+            command_lister.add_new_log ("The " + Constants.item (item.get_tag ()) +" was added to your inventory.");
             return;
         }
     }
@@ -120,33 +121,28 @@ public class Player : Object {
     }
 
     public void look (string input) {
-        if (current_location.get_tag () == "hole") {
-            stdout.printf ("It's too dark to see.\n");
-            return;
-        }
-
         if (input.contains ("around")) {
-            stdout.printf ("You are %s.\n", current_location.get_description ());
+            command_lister.add_new_log ("You are " + current_location.get_description ());
             return;
         }
-        stdout.printf ("I don't understand what you want to see.\n");
+        command_lister.add_new_log ("I don't understand what you want to see.\n");
     }
 
     public void go (string input) {
         var location = locations.get_location_by_input (input);
 
         if (location == null) {
-            stdout.printf ("I don't understand where you want to go.\n");
+            command_lister.add_new_log ("I don't understand where you want to go.");
             return;
         }
 
         if (this.is_in_location (location)) {
-            stdout.printf ("You are already here\n");
+            command_lister.add_new_log ("You are already here.");
             return;
         }
 
         if ( !this.can_move_to_location (location)) {
-            stdout.printf ("You cant go there from here\n");
+            command_lister.add_new_log ("You cant go there from here.");
             return;
         }
 

@@ -27,6 +27,7 @@ executable(
     'src/Views/CommandsView.vala',
     'src/CommandLister.vala',
     'src/CommandLogRow.vala',
+    'src/InputReactor.vala',
     asresources,
     dependencies: [
         dependency('gtk+-3.0'),

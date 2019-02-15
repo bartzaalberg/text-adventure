@@ -31,11 +31,8 @@ public class TextHelper : Object {
         log += "Chapter 1 - A hasty journey.\n";
         log += "\n";
         log += "\n";
-        log += "A worried-looking man I would come to know as " + Constants.COMPANION + " answered the heavy door. He looks at me, and sees my desperation. What happened? He asks confused. We don't have time for this. Every second counts as she is moved further away from " + Constants.HOMETOWN + ". Let me in " + Constants.COMPANION + ", I say frustrated. You know there is no time for a chat. He nods and asks me to follow him. \n";
-        // stdout.printf ("We hurry through the backdoor and silently run to the stable.\n");
-        // stdout.printf ("\n");
-        // stdout.printf (Constants.COMPANION + " already prepared the horses yesterday. You open the door and see two packed horses. Which one do you want? \n");
-        // stdout.printf (Constants.decision ("Bliss") + " the swift? Or " + Constants.decision ("Rusty") + " the bold.\n");
+        log += "A worried-looking man I would come to know as " + Constants.COMPANION + " answered the heavy door. He looks at me, and sees my desperation. What happened? He asks confused. We don't have time for this. Every second counts as she is moved further away from " + Constants.HOMETOWN + ". Let me in " + Constants.COMPANION + ", I say frustrated. You know there is no time for a chat. He nods and asks me to follow him. \n We hurry through the backdoor and silently run to the stable.\n\n" + Constants.COMPANION + " already prepared the horses yesterday. You open the door and see two packed horses. Which one do you want? " + Constants.decision ("Bliss") + " the swift? Or " + Constants.decision ("Rusty") + " the bold.";
+        command_lister.add_new_log( log);
         // pick_a_horse();
         // stdout.printf ("I climb on " + player.get_horse_name () + " and grab the reins. Let's head out. \n");
         // stdout.printf ("\n");
@@ -44,18 +41,19 @@ public class TextHelper : Object {
         // stdout.printf ("waist to his neck. They didn't stand a chance.\n");
         // stdout.printf ("\n");
         // stdout.printf ("There is nothing we can do for them, James says. Trotting through the gate. I follow him. \n");
-        command_lister.add_new_log( log);
+
     }
 
     public void show_help_text () {
-        stdout.printf ("\nYou could try: \n");
-        stdout.printf ("I " + Constants.location ("go") + " to the " + Constants.location ("field") + "\n");
-        stdout.printf ("I " + Constants.examination ("look around") + " me \n");
-        stdout.printf ("Look at my " + Constants.item ("inventory") + "\n");
-        stdout.printf ("View my " + Constants.item ("equipment") + "\n");
-        stdout.printf (Constants.item ("Equip") + " the " + Constants.item("sword") + "\n");
-        stdout.printf (Constants.item ("Pickup") + " the " + Constants.item("sword") + "\n");
-        stdout.printf ("I want to " + Constants.game_command ("quit") + " \n");
+        command_lister.add_new_log ("
+        You could try: \n
+        I " + Constants.location ("go") + " to the " + Constants.location ("field") + "\n
+        I " + Constants.examination ("look around") + " me \n
+        Look at my " + Constants.item ("inventory") + "\n
+        View my " + Constants.item ("equipment") + "\n" +
+        Constants.item ("Equip") + " the " + Constants.item("sword") + "\n" +
+        Constants.item ("Pickup") + " the " + Constants.item("sword") + "\n
+        I want to " + Constants.game_command ("quit") + " \n");
     }
 
     public void pick_a_horse () {
