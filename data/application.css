@@ -1,6 +1,27 @@
-@define-color textColorPrimary @BANANA_300;
-@define-color textColorPrimaryShadow alpha(shade(@colorPrimary, 0.6), 0.4);
 
-.titlebar button.combo * {
+.titlebar {
   color: inherit;
 }
+
+.command-entry {
+    padding: 12px;
+    margin: 12px;
+}
+
+.command-entry-box {
+    background-color: white;
+}
+
+.log-row {
+    border-bottom: solid 1px gray;
+}
+
+.log-row-image {
+    margin-left: 20px;
+}
+
+.log-row-description {
+    font-size:20px;
+    margin:20px;
+}
+

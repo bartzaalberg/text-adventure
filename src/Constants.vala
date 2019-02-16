@@ -1,38 +1,33 @@
 namespace Application.Constants {
     public const string APPLICATION_NAME = "com.github.bartzaalberg.python-tester";
-    public const string BOLDWHITE = "\033[32;1m";
-    public const string BOLDRED = "\033[1m\033[31m";
-    public const string BOLDGREEN = "\033[1m\033[32m";
-    public const string BOLDYELLOW = "\033[1m\033[33m";
-    public const string BOLDBLUE = "\033[1m\033[34m";
-    public const string BOLDMAGENTA = "\033[1m\033[35m";
-    public const string BOLDCYAN = "\033[1m\033[36m";
+    public const int APPLICATION_WIDTH = 500;
+    public const int APPLICATION_HEIGHT = 700;
+    public const string COLOR_LOCATION = "#009113";
+    // public const string COLOR_GAME_COMMAND = "#ff0000";
+    public const string COLOR_DECISION = "#f4a442";
+    public const string COLOR_EXAMINATION = "#f442ee";
+    public const string COLOR_ITEM = "#4286f4";
 
-    public const string RESET = "\033[0m";
     public const string COMPANION = "James";
     public const string HOMETOWN = "Rosetown";
 
     public string location (string text) {
-        return Constants.BOLDYELLOW + text + Constants.RESET;
+        return "<span foreground=\""+COLOR_LOCATION+"\">" + text +"</span>";
     }
 
     public string item (string text) {
-        return Constants.BOLDCYAN + text + Constants.RESET;
+        return "<span foreground=\""+COLOR_ITEM+"\">" + text +"</span>";
     }
 
     public string examination (string text) {
-        return Constants.BOLDMAGENTA + text + Constants.RESET;
+        return "<span foreground=\""+COLOR_EXAMINATION+"\">" + text +"</span>";
     }
 
-    public string action (string text) {
-        return Constants.BOLDBLUE + text + Constants.RESET;
-    }
-
-    public string game_command (string text) {
-        return Constants.BOLDRED + text + Constants.RESET;
-    }
+    // public string game_command (string text) {
+    //     return "<span foreground=\""+COLOR_GAME_COMMAND+"\">" + text +"</span>";
+    // }
 
     public string decision (string text) {
-        return Constants.BOLDWHITE + text + Constants.RESET;
+        return "<span foreground=\""+COLOR_DECISION+"\">" + text +"</span>";
     }
 }
