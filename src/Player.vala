@@ -93,7 +93,7 @@ public class Player : Object {
                 continue;
             }
             if ( !item.is_equipable ()) {
-                stdout.printf("The " + Constants.item(item.get_tag()) + " is not equipable\n");
+                command_lister.add_new_log ("The " + Constants.item(item.get_tag()) + " is not equipable.");
                 return;
             }
 
@@ -113,7 +113,7 @@ public class Player : Object {
                 this.set_weapon(item);
             }
 
-            stdout.printf(Constants.item(item.get_tag ()) + " equipped\n");
+            command_lister.add_new_log ("The " + Constants.item(item.get_tag ()) + " is equipped.");
             return;
         }
 

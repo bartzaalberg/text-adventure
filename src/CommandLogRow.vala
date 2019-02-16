@@ -21,15 +21,14 @@ public class CommandLogRow : Gtk.ListBoxRow {
         icon.get_style_context().add_class("log-row-image");
 
         summary_label = new Gtk.Label ("");
-        summary_label.set_line_wrap(true);
-        summary_label.set_xalign(0);
         summary_label.set_text (description);
+        summary_label.set_line_wrap(true);
+        summary_label.set_use_markup(true);
+        summary_label.set_xalign(0);
         summary_label.get_style_context().add_class("log-row-description");
 
         vertical_box.add (summary_label);
 
-
-        // package_row.margin = 12;
         package_row.add (icon);
         package_row.add (vertical_box);
     }

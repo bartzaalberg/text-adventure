@@ -9,7 +9,7 @@ public class TextHelper : Object {
         log += "Chapter 1 - A hasty journey.\n";
         log += "\n";
         log += "\n";
-        log += "A worried-looking man I would come to know as " + Constants.COMPANION + " answered the heavy door. He looks at me, and sees my desperation. What happened? He asks confused. We don't have time for this. Every second counts as she is moved further away from " + Constants.HOMETOWN + ". Let me in " + Constants.COMPANION + ", I say frustrated. You know there is no time for a chat. He nods and asks me to follow him. \n We hurry through the backdoor and silently run to the stable.\n\n" + Constants.COMPANION + " already prepared the horses yesterday. You open the door and see two packed horses. Which one do you want? " + Constants.decision ("Bliss") + " the swift? Or " + Constants.decision ("Rusty") + " the bold.";
+        log += "A worried-looking man I would come to know as " + Constants.COMPANION + " answered the heavy door. He looks at me, and sees my desperation. What happened? He asks confused. We don't have time for this. Every second counts as she is moved further away from " + Constants.HOMETOWN + ". Let me in " + Constants.COMPANION + ", I say frustrated. You know there is no time for a chat. He nods and asks me to follow him. We hurry through the backdoor and silently run to the stable.\n\n" + Constants.COMPANION + " already prepared the horses yesterday. You open the door and see two packed horses. Which one do you want? " + Constants.decision ("Bliss") + " the swift? Or " + Constants.decision ("Rusty") + " the bold.";
 
         var input_reactor = InputReactor.get_instance ();
         command_lister.add_new_log( log);
@@ -17,15 +17,17 @@ public class TextHelper : Object {
     }
 
     public void show_help_text () {
-        command_lister.add_new_log ("
-        You could try: \n
-        I " + Constants.location ("go") + " to the " + Constants.location ("field") + "\n
-        I " + Constants.examination ("look around") + " me \n
-        Look at my " + Constants.item ("inventory") + "\n
-        View my " + Constants.item ("equipment") + "\n" +
-        Constants.item ("Equip") + " the " + Constants.item("sword") + "\n" +
-        Constants.item ("Pickup") + " the " + Constants.item("sword") + "\n
-        I want to " + Constants.game_command ("quit") + " \n");
+        var log = "";
+        log += "You could try: \n";
+        log += "I " + Constants.location ("go") + " to the " + Constants.location ("field") + "\n";
+        log += "I " + Constants.examination ("look around") + " me \n";
+        log += "Look at my " + Constants.item ("inventory") + "\n";
+        log += "View my " + Constants.item ("equipment") + "\n";
+        log += Constants.item ("Equip") + " the " + Constants.item("sword") + "\n";
+        log += Constants.item ("Pickup") + " the " + Constants.item("sword") + "\n";
+        log += Constants.decision ("yes") + " or " + Constants.decision ("no") + " \n";
+        // log += "I want to " + Constants.game_command ("quit") + " \n";
+        command_lister.add_new_log (log);
     }
 
     public void pick_a_horse (string horse_name) {
@@ -57,22 +59,27 @@ public class TextHelper : Object {
     }
 
     public void show_inventory (Player player) {
-        stdout.printf ("Inventory: \n");
+        var inventory = "Inventory: \n";
         if (player.show_inventory ().length == 0) {
-            stdout.printf ("You dont have any items \n");
+            inventory += "You dont have any items.";
+
+            command_lister.add_new_log (inventory);
             return;
         }
+
         foreach (Item item in player.show_inventory ()) {
-            stdout.printf (Constants.item (item.get_tag() + "\n"));
+            inventory = Constants.item (item.get_tag()) + "\n";
         }
+
+        command_lister.add_new_log (inventory);
     }
 
     public void show_equipment (Player player) {
-        stdout.printf ("Equipment: \n");
-        stdout.printf ("Helmet: " + (player.get_helmet() == null ? "No helmet" : Constants.item (player.get_helmet().get_tag())) + "\n");
-        stdout.printf ("Chest: " + (player.get_chest() == null ? "No chest" : Constants.item (player.get_chest().get_tag())) + "\n");
-        stdout.printf ("Pants: " + (player.get_pants() == null ? "No pants" : Constants.item (player.get_pants().get_tag())) + "\n");
-        stdout.printf ("Weapon: " + (player.get_weapon() == null ? "No weapon" : Constants.item (player.get_weapon().get_tag())) + "\n");
+        var inventory = "Equipment: \n";
+        inventory += "Helmet: " + (player.get_helmet() == null ? "No helmet" : Constants.item (player.get_helmet().get_tag())) + "\n";
+        inventory += "Chest: " + (player.get_chest() == null ? "No chest" : Constants.item (player.get_chest().get_tag())) + "\n";
+        inventory += "Pants: " + (player.get_pants() == null ? "No pants" : Constants.item (player.get_pants().get_tag())) + "\n";
+        inventory += "Weapon: " + (player.get_weapon() == null ? "No weapon" : Constants.item (player.get_weapon().get_tag())) + "\n";
     }
 }
 }

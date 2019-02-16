@@ -20,9 +20,29 @@ public class InputReactor : Object {
         return instance;
     }
 
-    public async void log (string input_string) {
+    private string highlight_words(string raw_input_string) {
+        var str = raw_input_string;
+
+        str = str.replace ("look", Constants.examination("look"));
+        str = str.replace ("go", Constants.location("go"));
+        str = str.replace ("walk", Constants.location("walk"));
+        str = str.replace ("run", Constants.location("run"));
+        str = str.replace ("inventory", Constants.item("inventory"));
+        str = str.replace ("equipment", Constants.item("equipment"));
+        str = str.replace ("pickup", Constants.item("pickup"));
+        str = str.replace ("take", Constants.item("take"));
+        str = str.replace ("pick", Constants.item("pick"));
+        str = str.replace ("equip", Constants.item("equip"));
+        str = str.replace ("wear", Constants.item("wear"));
+
+        return str;
+    }
+
+    public async void log (string raw_input_string) {
+        var input_string = highlight_words(raw_input_string.down());
+
         command_lister.add_new_log( "--> " + input_string);
-        reaction(input_string.down());
+        reaction(input_string);
     }
 
     public void reaction (string input) {
