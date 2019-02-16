@@ -22,7 +22,7 @@ public class InputReactor : Object {
 
     public async void log (string input_string) {
         command_lister.add_new_log( "--> " + input_string);
-        reaction(input_string);
+        reaction(input_string.down());
     }
 
     public void reaction (string input) {

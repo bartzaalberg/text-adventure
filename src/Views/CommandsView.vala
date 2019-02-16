@@ -8,14 +8,14 @@ public class CommandInput : Gtk.Box {
     public CommandInput () {
         command_entry = new Gtk.Entry ();
         command_entry.hexpand = true;
+        command_entry.get_style_context ().add_class ("command-entry");
         command_entry.activate.connect(()=>{
             input_reactor.log (command_entry.get_text());
             command_entry.set_text("");
         });
 
         var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
-        box.margin = 12;
-        box.hexpand = true;
+        box.get_style_context ().add_class ("command-entry-box");
         box.add (command_entry);
         add (box);
     }

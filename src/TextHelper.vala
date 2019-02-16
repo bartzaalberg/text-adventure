@@ -6,28 +6,6 @@ public class TextHelper : Object {
 
     public void show_opening_text () {
         var log = "";
-        log += "            ^             \n";
-        log += "           / \\            \n";
-        log += "          / | \\           \n";
-        log += "         /| | |\\          \n";
-        log += "         || | ||          \n";
-        log += "         || | ||          \n";
-        log += "         || | ||          \n";
-        log += "         || | ||          \n";
-        log += "         || | ||          \n";
-        log += "         || | ||          \n";
-        log += "         || | ||          \n";
-        log += "         || | ||          \n";
-        log += "         || | ||          \n";
-        log += "         || | ||          \n";
-        log += "/        || | ||        \\ \n";
-        log += "|-------- | | | --------| \n";
-        log += "|-------- | | | --------| \n";
-        log += "\\         | | |         / \n";
-        log += "         /| | |\\          \n";
-        log += "         \\| | |/          \n";
-        log += "          \\ | /           \n";
-        log += "                          \n";
         log += "Chapter 1 - A hasty journey.\n";
         log += "\n";
         log += "\n";
@@ -62,17 +40,19 @@ public class TextHelper : Object {
         player.set_horse_name (horse_name == "bliss" ? "Bliss" : "Rusty");
         var horse = player.get_horse_name () == "Bliss" ? "Rusty" : "Bliss";
 
-        command_lister.add_new_log ("A fine choice, he says while hopping on " + horse + ". ");
+        var log = ("A fine choice, he says while hopping on " + horse + ". ");
 
         if (player.get_horse_name () == "Bliss") {
-            command_lister.add_new_log ("Bliss is a strong horse, very fast. But a bit of a chicken though, scared very quickly.");
+            log += "Bliss is a strong horse, very fast. But a bit of a chicken though, scared very quickly.";
         }
 
         if (player.get_horse_name () == "Rusty") {
-            command_lister.add_new_log ("Rusty is getting a bit old, but he's brave as lion.");
+            log += "Rusty is getting a bit old, but he's brave as lion. ";
         }
 
-        command_lister.add_new_log ("I climb on " + player.get_horse_name () + " and grab the reins. Let's head out.\n\nWe ride for the townsgate. Near the gate I see two man lying in a pool of blood. The town guards. The first facedown with 2 arrows in the back. The second probably noticed the attackers. His sword next to him and a deep cut from his waist to his neck. They didn't stand a chance.\n\nThere is nothing we can do for them, James says. Trotting through the gate. I follow him.");
+        log += "I climb on " + player.get_horse_name () + " and grab the reins. Let's head out.\n\nWe ride for the townsgate. Near the gate I see two man lying in a pool of blood. The town guards. The first facedown with 2 arrows in the back. The second probably noticed the attackers. His sword next to him and a deep cut from his waist to his neck. They didn't stand a chance.\n\nThere is nothing we can do for them, James says. Trotting through the gate. I follow him.";
+
+        command_lister.add_new_log (log);
         player.look ("around");
     }
 
