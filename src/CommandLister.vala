@@ -15,31 +15,18 @@ public class CommandLister : Gtk.ListBox {
         return instance;
     }
 
-    public void empty_list () {
-        // this.foreach ((CommandLogRow) => {
-            // this.remove (ListBoxRow);
-        // });
-    }
-
-    public void get_installed_packages () {
-
-        // var installed_packages = response_translator.get_installed_packages ();
-
-        // empty_list ();
-        // foreach (Location location in locations) {
-
-            var log = new CommandLogRow ("blablaijwd");
-            this.add(log);
-            log.show_all();
-            var log2 = new CommandLogRow ("blablaijwd");
-            this.add(log2);
-            log2.show_all();
-    }
-
     public void add_new_log (string description) {
             var log = new CommandLogRow (description);
             this.add(log);
             log.show_all();
+            scroll_to_bottom();
+    }
+
+    public async void scroll_to_bottom () {
+      GLib.Timeout.add (100, () => {
+            this.get_adjustment().set_value(this.get_adjustment().get_upper());
+            return false;
+        }, GLib.Priority.DEFAULT);
     }
 }
 }

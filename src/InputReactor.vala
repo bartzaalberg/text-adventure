@@ -20,7 +20,7 @@ public class InputReactor : Object {
         return instance;
     }
 
-    public void log (string input_string) {
+    public async void log (string input_string) {
         command_lister.add_new_log( "--> " + input_string);
         reaction(input_string);
     }

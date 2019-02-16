@@ -51,8 +51,6 @@ public class TextHelper : Object {
     }
 
     public void pick_a_horse (string horse_name) {
-        stdout.printf ("\n");
-
         if(horse_name != "bliss" && horse_name != "rusty"){
             command_lister.add_new_log ("Come on we don't have time for your rambling. Just say the name of your horse! \n");
             return;

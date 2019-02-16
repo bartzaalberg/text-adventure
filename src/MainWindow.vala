@@ -2,12 +2,8 @@ namespace Application {
 public class MainWindow : Gtk.Window {
 
     private StackManager stack_manager = StackManager.get_instance ();
-    private TextHelper text_helper = new TextHelper ();
-    private Locations locations = Locations.get_instance ();
-    private Player player = Player.get_instance ();
 
     private uint configure_id;
-
 
     public MainWindow (Gtk.Application application) {
         Object (application: application,
