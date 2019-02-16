@@ -1,7 +1,7 @@
 namespace Application.Constants {
     public const string APPLICATION_NAME = "com.github.bartzaalberg.python-tester";
-    public const int APPLICATION_WIDTH = 700;
-    public const int APPLICATION_HEIGHT = 500;
+    public const int APPLICATION_WIDTH = 500;
+    public const int APPLICATION_HEIGHT = 700;
     public const string COLOR_LOCATION = "#009113";
     // public const string COLOR_GAME_COMMAND = "#ff0000";
     public const string COLOR_DECISION = "#f4a442";
