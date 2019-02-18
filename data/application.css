@@ -6,6 +6,7 @@
 .command-entry {
     padding: 12px;
     margin: 12px;
+    background: white;
 }
 
 .command-entry-box {
@@ -18,6 +19,7 @@
 
 .log-row-image {
     margin-left: 20px;
+    margin-top: 20px;
 }
 
 .log-row-description {

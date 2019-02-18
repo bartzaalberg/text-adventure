@@ -19,6 +19,8 @@ public class CommandLogRow : Gtk.ListBoxRow {
     public void reload_view (string description) {
         icon = new Gtk.Image.from_icon_name ("terminal", Gtk.IconSize.DND);
         icon.get_style_context().add_class("log-row-image");
+        icon.set_valign(Gtk.Align.START);
+        icon.set_halign(Gtk.Align.START);
 
         summary_label = new Gtk.Label ("");
         summary_label.set_text (description);
