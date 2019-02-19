@@ -39,7 +39,7 @@ public class InputReactor : Object {
     }
 
     public async void log (string raw_input_string) {
-        var input_string = highlight_words(raw_input_string.down());
+        var input_string = highlight_words(raw_input_string.down().replace ("\n", ""));
 
         command_lister.add_new_log( "--> " + input_string);
         reaction(input_string);

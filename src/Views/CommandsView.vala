@@ -3,15 +3,29 @@ public class CommandInput : Gtk.Box {
 
     private InputReactor input_reactor = InputReactor.get_instance ();
 
-    Gtk.Entry command_entry;
+    Gtk.TextView command_entry;
+    Gtk.TextBuffer command_entry_buffer;
 
     public CommandInput () {
-        command_entry = new Gtk.Entry ();
+        command_entry_buffer = new Gtk.TextBuffer (null);
+        command_entry = new Gtk.TextView ();
+        command_entry.set_buffer(command_entry_buffer);
         command_entry.hexpand = true;
         command_entry.get_style_context ().add_class ("command-entry");
-        command_entry.activate.connect(()=>{
-            input_reactor.log (command_entry.get_text());
-            command_entry.set_text("");
+
+        command_entry.key_press_event.connect((e)=>{
+            if(e.keyval == Gdk.Key.Return) {
+                if ((e.state & Gdk.Key.Shift_L) != 0 ||
+                    (e.state & Gdk.Key.Shift_L) != 0) {
+                    return false;
+                }
+                GLib.Timeout.add (0, () => {
+                    input_reactor.log (command_entry_buffer.text);
+                    command_entry_buffer.text = "";
+                    return false;
+                }, GLib.Priority.DEFAULT);
+            }
+            return false;
         });
 
         var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
@@ -29,6 +43,9 @@ public class CommandsView : Gtk.Grid {
     private TextHelper text_helper = new TextHelper ();
 
     public CommandsView () {
+
+        this.get_style_context ().add_class ("command-view-grid");
+
         var scrolled_window = new Gtk.ScrolledWindow(null,null);
         scrolled_window.add(command_lister);
         scrolled_window.hexpand = true;

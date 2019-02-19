@@ -3,6 +3,10 @@
   color: inherit;
 }
 
+.command-view-grid {
+    background: white;
+}
+
 .command-entry {
     padding: 12px;
     margin: 12px;
@@ -10,11 +14,15 @@
 }
 
 .command-entry-box {
-    background-color: white;
+    margin-left: 12px;
+    margin-bottom: 12px;
+    margin-right: 12px;
+    border: solid 2px purple;
+    background: white;
 }
 
 .log-row {
-    border-bottom: solid 1px gray;
+    border-bottom: solid 1px #dbdbdb;
 }
 
 .log-row-image {
