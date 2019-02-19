@@ -3,14 +3,14 @@ A text adventure
 
 <p align="center">
     <a href="<p align="center">
-    <a href="https://appcenter.elementary.io/com.github.bartzaalberg.python-tester">
+    <a href="https://appcenter.elementary.io/com.github.bartzaalberg.text-adventure">
         <img src="https://appcenter.elementary.io/badge.svg" alt="Get it on AppCenter">
     </a>
 </p>
 
 <p align="center">
     <img
-    src="https://raw.githubusercontent.com/bartzaalberg/python-tester/master/screenshot.png" />
+    src="https://raw.githubusercontent.com/bartzaalberg/text-adventure/master/screenshot.png" />
 </p>
 
 ### Python code without a server!

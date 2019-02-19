@@ -1,4 +1,4 @@
-project('com.github.bartzaalberg.python-tester', 'vala', 'c')
+project('com.github.bartzaalberg.text-adventure', 'vala', 'c')
 
 gnome = import('gnome')
 i18n = import('i18n')

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>com.github.bartzaalberg.python-tester</id>
+  <id>com.github.bartzaalberg.text-adventure</id>
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <name>Python Tester</name>
+  <name>Text Adventure</name>
   <summary>Test some Python code!</summary>
   <description>
     <p>A simple tool to test your Python code.</p>
@@ -18,7 +18,7 @@
     </ul>
   </description>
   <provides>
-    <binary>com.github.bartzaalberg.python-tester</binary>
+    <binary>com.github.bartzaalberg.text-adventure</binary>
   </provides>
   <content_rating type="oars-1.1">
     <content_attribute id="violence-cartoon">none</content_attribute>
@@ -69,10 +69,10 @@
   </releases>
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/bartzaalberg/python-tester/master/screenshot.png</image>
+      <image>https://raw.githubusercontent.com/bartzaalberg/text-adventure/master/screenshot.png</image>
     </screenshot>
     <screenshot>
-      <image>https://raw.githubusercontent.com/bartzaalberg/python-tester/master/screenshot2.png</image>
+      <image>https://raw.githubusercontent.com/bartzaalberg/text-adventure/master/screenshot2.png</image>
     </screenshot>
   </screenshots>
   <developer_name>Bart Zaalberg</developer_name>
@@ -80,7 +80,7 @@
     <value key="x-appcenter-color-primary">rgb(100, 87, 133)</value>
     <value key="x-appcenter-color-primary-text">#FFF</value>
   </custom>
-  <url type="homepage">https://github.com/bartzaalberg/python-tester</url>
-  <url type="bugtracker">https://github.com/bartzaalberg/python-tester/issues</url>
-  <url type="help">https://github.com/bartzaalberg/python-tester/issues</url>
+  <url type="homepage">https://github.com/bartzaalberg/text-adventure</url>
+  <url type="bugtracker">https://github.com/bartzaalberg/text-adventure/issues</url>
+  <url type="help">https://github.com/bartzaalberg/text-adventure/issues</url>
 </component>

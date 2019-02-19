@@ -1,0 +1,16 @@
+[Desktop Entry]
+Name=Text Adventure
+GenericName=Text Adventure
+Comment=Test some Python code!
+Categories=Utility;Development;Education;
+Exec=com.github.bartzaalberg.text-adventure
+Icon=com.github.bartzaalberg.text-adventure
+Terminal=false
+Type=Application
+X-GNOME-Gettext-Domain=text-adventure
+Keywords=GUI;Python;Development;
+Actions=AboutDialog;
+
+[Desktop Action AboutDialog]
+Exec=xdg-open appstream://com.github.bartzaalberg.text-adventure
+Name=About Text Adventure
