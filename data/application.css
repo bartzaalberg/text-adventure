@@ -8,7 +8,9 @@
 }
 
 .command-entry {
-    padding: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-right: 12px;
     margin: 12px;
     background: white;
 }
@@ -17,7 +19,8 @@
     margin-left: 12px;
     margin-bottom: 12px;
     margin-right: 12px;
-    border: solid 2px purple;
+    padding-left: 6px;
+    border: solid 3px purple;
     background: white;
 }
 

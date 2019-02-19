@@ -3,11 +3,41 @@ public class CommandInput : Gtk.Box {
 
     private InputReactor input_reactor = InputReactor.get_instance ();
 
+    Gtk.Image icon;
     Gtk.TextView command_entry;
     Gtk.TextBuffer command_entry_buffer;
 
     public CommandInput () {
+
+       icon = new Gtk.Image.from_icon_name ("storytelling", Gtk.IconSize.DND);
+
         command_entry_buffer = new Gtk.TextBuffer (null);
+        command_entry_buffer.changed.connect((e) => {
+            var description = command_entry_buffer.text;
+
+            if(description.contains("pickup")){
+                icon.set_from_icon_name ("item", Gtk.IconSize.DND);
+                return;
+            }
+
+            if(description.contains("bliss")){
+                icon.set_from_icon_name ("choice", Gtk.IconSize.DND);
+                return;
+            }
+
+            if(description.contains("go")){
+                icon.set_from_icon_name ("location", Gtk.IconSize.DND);
+                return;
+            }
+
+            if(description.contains("look")){
+                icon.set_from_icon_name ("examination", Gtk.IconSize.DND);
+                return;
+            }
+
+            icon.set_from_icon_name ("storytelling", Gtk.IconSize.DND);
+        });
+
         command_entry = new Gtk.TextView ();
         command_entry.set_buffer(command_entry_buffer);
         command_entry.hexpand = true;
@@ -30,6 +60,7 @@ public class CommandInput : Gtk.Box {
 
         var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
         box.get_style_context ().add_class ("command-entry-box");
+        box.add (icon);
         box.add (command_entry);
         add (box);
     }

@@ -31,7 +31,7 @@ public class TextHelper : Object {
     }
 
     public void pick_a_horse (string horse_name) {
-        if(horse_name != "bliss" && horse_name != "rusty"){
+        if(!horse_name.contains("bliss") && !horse_name.contains("rusty")) {
             command_lister.add_new_log ("Come on we don't have time for your rambling. Just say the name of your horse! \n");
             return;
         }
@@ -39,7 +39,7 @@ public class TextHelper : Object {
         var input_reactor = InputReactor.get_instance ();
         input_reactor.input_type = null;
 
-        player.set_horse_name (horse_name == "bliss" ? "Bliss" : "Rusty");
+        player.set_horse_name (horse_name.contains("bliss") ? "Bliss" : "Rusty");
         var horse = player.get_horse_name () == "Bliss" ? "Rusty" : "Bliss";
 
         var log = ("A fine choice, he says while hopping on " + horse + ". ");
