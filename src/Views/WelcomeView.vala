@@ -7,7 +7,7 @@ public class WelcomeView : Gtk.ScrolledWindow {
 
     public WelcomeView () {
         var welcome_view = new Welcome (_("Text Adventure"), _("The story of a guy and his horse"));
-        welcome_view.append ("open", _("New Game"), _("Start a new adventure"));
+        welcome_view.append ("storytelling", _("New Game"), _("Start a new adventure"));
 
         welcome_view.activated.connect ((option) => {
             switch (option) {

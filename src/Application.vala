@@ -20,7 +20,10 @@ public class App:Granite.Application {
             return;
         }
 
-      var provider = new Gtk.CssProvider ();
+        weak Gtk.IconTheme default_theme = Gtk.IconTheme.get_default ();
+        default_theme.add_resource_path ("/com/github/bartzaalberg/python-tester");
+
+        var provider = new Gtk.CssProvider ();
         provider.load_from_resource ("/com/github/bartzaalberg/python-tester/application.css");
         Gtk.StyleContext.add_provider_for_screen (
             Gdk.Screen.get_default (),

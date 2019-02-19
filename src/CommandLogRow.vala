@@ -17,7 +17,27 @@ public class CommandLogRow : Gtk.ListBoxRow {
     }
 
     public void reload_view (string description) {
-        icon = new Gtk.Image.from_icon_name ("terminal", Gtk.IconSize.DND);
+
+        icon = new Gtk.Image.from_icon_name ("storytelling", Gtk.IconSize.DND);
+
+        if(description.contains("-->")){
+            if(description.contains(Constants.COLOR_ITEM)){
+                icon = new Gtk.Image.from_icon_name ("item", Gtk.IconSize.DND);
+            }
+
+            if(description.contains(Constants.COLOR_DECISION)){
+                icon = new Gtk.Image.from_icon_name ("choice", Gtk.IconSize.DND);
+            }
+
+            if(description.contains(Constants.COLOR_LOCATION)){
+                icon = new Gtk.Image.from_icon_name ("location", Gtk.IconSize.DND);
+            }
+
+            if(description.contains(Constants.COLOR_EXAMINATION)){
+                icon = new Gtk.Image.from_icon_name ("examination", Gtk.IconSize.DND);
+            }
+        }
+
         icon.get_style_context().add_class("log-row-image");
         icon.set_valign(Gtk.Align.START);
         icon.set_halign(Gtk.Align.START);
