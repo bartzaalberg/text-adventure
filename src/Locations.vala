@@ -67,7 +67,7 @@ public class Locations : Object {
         );
         locations += new Location (
             "bridge",
-            "at the bridge. It's made giant rocks and can easily hold the horses. At the end of the bridge you see light. It leads outside",
+            "at the bridge. It's made giant rocks and can easily hold the horses. At the end of the bridge you see light. It leads " + Constants.location("outside") + ".",
             {"passage", "outside"},
             {}
         );
