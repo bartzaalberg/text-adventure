@@ -71,6 +71,18 @@ public class Locations : Object {
             {"passage", "outside"},
             {}
         );
+        locations += new Location (
+            "outside",
+            "outside now. You are on a ledge above a " + Constants.location("lake") + ". The only way down is jumping down. You cannot get back up.",
+            {"passage", "lake"},
+            {}
+        );
+        locations += new Location (
+            "lake",
+            "in the lake. It's cold and deep. You should probably swim to the shore.",
+            {"shore"},
+            {}
+        );
     }
 
     public static Locations get_instance () {
