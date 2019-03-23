@@ -1,5 +1,5 @@
-# Game
-A text adventure
+# A text adventure
+Embark on a text journey.
 
 <p align="center">
     <a href="<p align="center">
@@ -13,9 +13,9 @@ A text adventure
     src="https://raw.githubusercontent.com/bartzaalberg/text-adventure/master/screenshot.png" />
 </p>
 
-### Python code without a server!
+### Save the girl!
 
-A Vala application to test Python snippets without the hassle.
+When finally deciding to leave Rosetown with your girl she has been kidnapped. Together with James you embark on a journey through ... to save her!
 
 ## Installation
 
